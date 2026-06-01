@@ -1,154 +1,173 @@
 "use client";
 
-import React from 'react';
-import Link from 'next/link';
+import Link from "next/link";
+
+const trustPoints = [
+  "Registered company in Bahrain",
+  "Production software experience",
+  "Clear weekly updates",
+];
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center bg-gradient-to-b from-gray-50 via-white to-transparent overflow-hidden">
-      {/* Background Decorative Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-teal-400/20 to-teal-600/20 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-orange-400/20 to-orange-600/20 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-gradient-to-br from-teal-500/10 to-orange-500/10 rounded-full blur-2xl"></div>
-        
-        {/* Connecting gradient to next section */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-gray-50/50"></div>
+    <section
+      id="home"
+      className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-teal-50/40 pt-32 pb-20 lg:pt-40 lg:pb-28"
+    >
+      <div className="absolute inset-0">
+        <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-teal-500/12 blur-3xl" />
+        <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-orange-500/12 blur-3xl" />
+        <div className="absolute inset-x-0 top-24 mx-auto h-px max-w-6xl bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 py-20 lg:py-32">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          
-          {/* Left Column - Content */}
-          <div className="space-y-8 lg:space-y-10">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-2 text-sm font-medium text-teal-700">
-              <div className="w-2 h-2 bg-teal-500 rounded-full animate-pulse"></div>
-              Based in Bahrain • Global Standards
-            </div>
-
-            {/* Main Headline */}
-            <div className="space-y-6">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Powering Your{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-teal-500">
-                  Next-Gen
-                </span>
-                <br />
-                SaaS Experience
-              </h1>
-              
-              <p className="text-xl text-gray-600 leading-relaxed max-w-2xl">
-                Expert software engineering and SaaS development services. 
-                We build scalable, reliable solutions that drive your business forward 
-                with cutting-edge technology and proven expertise.
-              </p>
-            </div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="#contact"
-                className="group relative inline-flex items-center justify-center gap-2 bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-700 hover:to-teal-600 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ease-out overflow-hidden"
-              >
-                <span className="relative z-10">Get Started</span>
-                <svg className="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                <div className="absolute inset-0 bg-gradient-to-r from-teal-700 to-teal-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </Link>
-              
-              <Link
-                href="#services"
-                className="group inline-flex items-center justify-center gap-2 border-2 border-gray-300 hover:border-teal-600 text-gray-700 hover:text-teal-600 font-semibold px-8 py-4 rounded-xl transition-all duration-300 ease-out hover:bg-teal-50"
-              >
-                View Services
-                <svg className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </Link>
-            </div>
-
-            {/* Trust Indicators */}
-            <div className="flex flex-wrap items-center gap-8 pt-8 border-t border-gray-200">
-              <div className="flex items-center gap-3 text-gray-600">
-                <div className="w-10 h-10 bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg flex items-center justify-center shadow-md">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="font-semibold text-gray-900">20+ Years</div>
-                  <div className="text-sm text-gray-500">Combined Experience</div>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-3 text-gray-600">
-                <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center shadow-md">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="font-semibold text-gray-900">Quality First</div>
-                  <div className="text-sm text-gray-500">Reliable Solutions</div>
-                </div>
-              </div>
-            </div>
+      <div className="relative mx-auto grid max-w-7xl gap-14 px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <div className="space-y-8">
+          <div className="inline-flex items-center rounded-full border border-teal-200 bg-white/85 px-4 py-2 text-sm font-medium text-teal-700 shadow-sm backdrop-blur">
+            Bahrain-registered • Remote-first • Serving clients globally
           </div>
 
-          {/* Right Column - Visual */}
-          <div className="relative lg:order-2">
-            <div className="relative max-w-lg mx-auto">
-              {/* Main Card - Code Editor Mock */}
-              <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200/50">
-                {/* Header */}
-                <div className="flex items-center gap-3 px-6 py-4 bg-gray-50 border-b border-gray-200">
-                  <div className="flex gap-2">
-                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  </div>
-                  <div className="text-sm text-gray-600 font-mono">LayerSeven.tsx</div>
-                </div>
-                
-                {/* Code Content */}
-                <div className="p-6 space-y-4 font-mono text-sm">
-                  <div className="text-gray-700">
-                    <span className="text-purple-600">const</span>{' '}
-                    <span className="text-blue-600">LayerSeven</span>{' '}
-                    <span className="text-gray-600">=</span>{' '}
-                    <span className="text-gray-600">() = {'{'}
+          <div className="space-y-5">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">
+              LayerSeven Solutions
+            </p>
+            <h1 className="max-w-3xl text-4xl font-bold leading-tight text-slate-950 sm:text-5xl lg:text-6xl">
+              Build Your SaaS Product Faster
+            </h1>
+            <p className="max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl">
+              LayerSeven helps startups and growing businesses design, build,
+              and launch scalable web platforms, AI integrations, and backend
+              systems.
+            </p>
+            <p className="max-w-2xl text-base leading-7 text-slate-500">
+              Clean code, clear communication, reliable delivery. Before
+              writing code, we figure out what actually matters.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-4 sm:flex-row">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-teal-600 to-cyan-600 px-7 py-4 text-base font-semibold text-white shadow-lg shadow-teal-600/20 transition hover:scale-[1.02] hover:from-teal-700 hover:to-cyan-700"
+            >
+              Book a Discovery Call
+            </Link>
+            <Link
+              href="/work"
+              className="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-7 py-4 text-base font-semibold text-slate-700 transition hover:border-teal-500 hover:text-teal-700"
+            >
+              View Our Work
+            </Link>
+          </div>
+
+          <div className="grid gap-3 pt-2 sm:grid-cols-3">
+            {trustPoints.map((point) => (
+              <div
+                key={point}
+                className="rounded-2xl border border-slate-200 bg-white/80 px-4 py-4 text-sm font-medium text-slate-700 shadow-sm backdrop-blur"
+              >
+                {point}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="relative mx-auto w-full max-w-xl min-w-0">
+          <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-teal-500/15 via-cyan-500/10 to-orange-500/15 blur-2xl" />
+          <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 shadow-2xl shadow-slate-900/15">
+            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+              <div className="flex items-center gap-2">
+                <span className="h-3 w-3 rounded-full bg-rose-400" />
+                <span className="h-3 w-3 rounded-full bg-amber-400" />
+                <span className="h-3 w-3 rounded-full bg-emerald-400" />
+              </div>
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-slate-300">
+                product-architecture.ts
+              </span>
+            </div>
+
+            <div className="grid gap-5 p-5 lg:grid-cols-[1fr_1fr]">
+              <div className="min-w-0 rounded-2xl border border-white/10 bg-white/5 p-4">
+                <div className="mb-4 flex items-center justify-between">
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-300">
+                    API Design
                   </span>
+                  <span className="text-xs text-slate-400">v1 launch scope</span>
+                </div>
+                <div className="space-y-3 break-words font-mono text-sm text-slate-300">
+                  <div className="min-w-0">
+                    <span className="text-cyan-300">POST</span> <span>/auth/login</span>
                   </div>
-                  <div className="ml-4 space-y-2">
-                    <div className="h-3 bg-teal-200 rounded w-3/4 animate-pulse"></div>
-                    <div className="h-3 bg-orange-200 rounded w-1/2 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-                    <div className="h-3 bg-gray-200 rounded w-2/3 animate-pulse" style={{ animationDelay: '1s' }}></div>
-                    <div className="h-3 bg-teal-200 rounded w-1/3 animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+                  <div className="min-w-0">
+                    <span className="text-cyan-300">GET</span> <span>/projects/:id/metrics</span>
                   </div>
-                  <div className="text-gray-600">{'}'}</div>
+                  <div className="min-w-0">
+                    <span className="text-cyan-300">POST</span> <span>/ai/answer</span>
+                  </div>
+                  <div className="min-w-0">
+                    <span className="text-cyan-300">QUEUE</span> <span>document-sync-worker</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Floating Elements */}
-              <div className="absolute -top-6 -right-6 bg-gradient-to-br from-orange-500 to-orange-600 text-white p-4 rounded-xl shadow-lg transform rotate-12 hover:rotate-6 transition-transform duration-300">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                </svg>
-              </div>
-              
-              <div className="absolute -bottom-6 -left-6 bg-gradient-to-br from-teal-500 to-teal-600 text-white p-4 rounded-xl shadow-lg transform -rotate-12 hover:-rotate-6 transition-transform duration-300">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
+              <div className="min-w-0 space-y-5">
+                <div className="min-w-0 rounded-2xl border border-white/10 bg-white p-4 text-slate-900">
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="text-sm font-semibold">Launch Dashboard</span>
+                    <span className="rounded-full bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-700">
+                      Ready for QA
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="min-w-0 rounded-xl bg-slate-100 p-3">
+                      <div className="text-xs text-slate-500">Scope</div>
+                      <div className="mt-2 whitespace-nowrap text-base font-bold leading-tight sm:text-lg">
+                        MVP
+                      </div>
+                    </div>
+                    <div className="min-w-0 rounded-xl bg-slate-100 p-3">
+                      <div className="text-xs text-slate-500">Mode</div>
+                      <div className="mt-2 whitespace-nowrap text-base font-bold leading-tight tracking-tight sm:text-lg">
+                        Remote
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-              {/* Stats Floating Card */}
-              <div className="absolute -left-8 top-1/2 transform -translate-y-1/2 bg-white rounded-lg shadow-lg p-4 border border-gray-200/50 hidden lg:block">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-teal-600">99%</div>
-                  <div className="text-xs text-gray-500">Uptime</div>
+                <div className="rounded-2xl border border-teal-400/20 bg-gradient-to-br from-teal-500/15 to-cyan-500/10 p-4 text-slate-100">
+                  <p className="text-sm font-semibold text-white">Founder note</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-200">
+                    We won&apos;t recommend AI where a simple workflow works better.
+                    The goal is to launch something maintainable.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="border-t border-white/10 px-5 py-4">
+              <div className="grid gap-3 sm:grid-cols-3">
+                <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                  <div className="text-xs uppercase tracking-[0.16em] text-slate-500">
+                    MVP scope
+                  </div>
+                  <div className="mt-2 text-sm font-semibold text-white">
+                    Dashboard, auth, payments
+                  </div>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                  <div className="text-xs uppercase tracking-[0.16em] text-slate-500">
+                    AI layer
+                  </div>
+                  <div className="mt-2 text-sm font-semibold text-white">
+                    Search, answers, automation
+                  </div>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                  <div className="text-xs uppercase tracking-[0.16em] text-slate-500">
+                    Handoff
+                  </div>
+                  <div className="mt-2 text-sm font-semibold text-white">
+                    Docs, deploys, support
+                  </div>
                 </div>
               </div>
             </div>

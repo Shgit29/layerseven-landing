@@ -1,12 +1,15 @@
 
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { navLinks } from "@/lib/siteContent";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,30 +18,6 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const navLinks = [
-    { href: '#home', label: 'Home' },
-    { href: '#about', label: 'About' },
-    { href: '#services', label: 'Services' },
-    { href: '#contact', label: 'Contact' },
-  ];
-
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    setIsOpen(false);
-    
-    const element = document.querySelector(href);
-    if (element) {
-      const headerHeight = 80;
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - headerHeight;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
 
   return (
     <header 
@@ -52,8 +31,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo / Brand Name - Enhanced */}
           <Link 
-            href="#home"
-            onClick={(e) => handleLinkClick(e, '#home')}
+            href="/"
             className="flex items-center space-x-2 group"
           >
             <div className={`bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-105 ${
@@ -74,11 +52,16 @@ const Header = () => {
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={(e) => handleLinkClick(e, link.href)}
-                className="relative px-4 py-2 text-gray-700 hover:text-teal-600 font-medium transition-all duration-300 ease-in-out rounded-lg hover:bg-gray-50 group"
+                className={`relative px-4 py-2 font-medium transition-all duration-300 ease-in-out rounded-lg hover:bg-gray-50 group ${
+                  pathname === link.href ? "text-teal-700" : "text-gray-700 hover:text-teal-600"
+                }`}
               >
                 {link.label}
-                <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-teal-500 to-teal-600 transition-all duration-300 group-hover:w-3/4 transform -translate-x-1/2 rounded-full"></span>
+                <span
+                  className={`absolute bottom-0 left-1/2 h-0.5 bg-gradient-to-r from-teal-500 to-teal-600 transition-all duration-300 transform -translate-x-1/2 rounded-full ${
+                    pathname === link.href ? "w-3/4" : "w-0 group-hover:w-3/4"
+                  }`}
+                />
               </Link>
             ))}
           </div>
@@ -86,11 +69,10 @@ const Header = () => {
           {/* Enhanced CTA Button */}
           <div className="hidden md:block">
             <Link
-              href="#contact"
-              onClick={(e) => handleLinkClick(e, '#contact')}
+              href="/contact"
               className="relative px-6 py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ease-out overflow-hidden group"
             >
-              <span className="relative z-10">Get Started</span>
+              <span className="relative z-10">Book a Call</span>
               <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-orange-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </Link>
           </div>
@@ -119,14 +101,14 @@ const Header = () => {
 
         {/* Mobile Menu */}
         <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+          isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}>
           <div className="py-4 space-y-2 border-t border-gray-200/50">
             {navLinks.map((link, index) => (
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={(e) => handleLinkClick(e, link.href)}
+                onClick={() => setIsOpen(false)}
                 className={`block px-4 py-3 text-gray-700 hover:text-teal-600 hover:bg-gray-50 font-medium rounded-lg transition-all duration-300 transform ${
                   isOpen ? 'translate-x-0 opacity-100' : 'translate-x-4 opacity-0'
                 }`}
@@ -137,14 +119,14 @@ const Header = () => {
             ))}
             <div className="pt-2">
               <Link
-                href="#contact"
-                onClick={(e) => handleLinkClick(e, '#contact')}
+                href="/contact"
+                onClick={() => setIsOpen(false)}
                 className={`block mx-4 px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-xl text-center shadow-lg transition-all duration-300 transform ${
                   isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
                 }`}
                 style={{ transitionDelay: '200ms' }}
               >
-                Get Started
+                Book a Call
               </Link>
             </div>
           </div>

@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "LayerSeven - Powering Your Next-Gen SaaS Experience",
+  title: "LayerSeven Solutions | SaaS Development & AI Integrations",
   description:
-    "Expert SaaS development, consulting, and API integrations. Quality solutions with Bahrain understanding and global standards.",
+    "LayerSeven Solutions is a Bahrain-registered software development company helping startups and businesses build SaaS products, AI integrations, backend systems, and scalable web platforms.",
+  metadataBase: new URL("https://layerseven.com"),
 };
 
 export default function RootLayout({
@@ -21,9 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className="font-sans antialiased">
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
