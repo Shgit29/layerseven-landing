@@ -12,6 +12,10 @@ import {
 const Contact = () => {
   const { ref: sectionRef, isVisible: sectionVisible } = useScrollAnimation(0.1, false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitState, setSubmitState] = useState<{
+    type: "success" | "error";
+    message: string;
+  } | null>(null);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -25,6 +29,10 @@ const Contact = () => {
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
+    if (submitState) {
+      setSubmitState(null);
+    }
+
     setFormData((current) => ({
       ...current,
       [e.target.name]: e.target.value,
@@ -34,34 +42,48 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    const subject = encodeURIComponent(
-      `Project Inquiry: ${formData.projectType || "New project"}`,
-    );
-    const body = encodeURIComponent(
-      [
-        `Full Name: ${formData.fullName}`,
-        `Email Address: ${formData.email}`,
-        `Company Name: ${formData.companyName || "Not provided"}`,
-        `Project Type: ${formData.projectType || "Not provided"}`,
-        `Project Budget: ${formData.projectBudget || "Not provided"}`,
-        `Timeline: ${formData.timeline || "Not provided"}`,
-        "",
-        "Project Details:",
-        formData.projectDetails,
-      ].join("\n"),
-    );
+    setSubmitState(null);
 
-    window.location.href = `mailto:hello@layer7solution.com?subject=${subject}&body=${body}`;
-    setIsSubmitting(false);
-    setFormData({
-      fullName: "",
-      email: "",
-      companyName: "",
-      projectType: "",
-      projectBudget: "",
-      timeline: "",
-      projectDetails: "",
-    });
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = (await response.json()) as { error?: string };
+
+      if (!response.ok) {
+        setSubmitState({
+          type: "error",
+          message: data.error || "We couldn't send your message right now. Please try again.",
+        });
+        return;
+      }
+
+      setSubmitState({
+        type: "success",
+        message: "Thanks. Your project details were sent successfully.",
+      });
+      setFormData({
+        fullName: "",
+        email: "",
+        companyName: "",
+        projectType: "",
+        projectBudget: "",
+        timeline: "",
+        projectDetails: "",
+      });
+    } catch {
+      setSubmitState({
+        type: "error",
+        message: "We couldn't send your message right now. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -178,7 +200,7 @@ const Contact = () => {
                   disabled={isSubmitting}
                   className="inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-teal-600 to-cyan-600 px-6 py-4 font-semibold text-white shadow-lg shadow-teal-600/20 transition hover:scale-[1.01] hover:from-teal-700 hover:to-cyan-700 disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  {isSubmitting ? "Preparing..." : "Send Project Details"}
+                  {isSubmitting ? "Sending..." : "Send Project Details"}
                 </button>
                 <a
                   href="mailto:hello@layer7solution.com?subject=Discovery%20Call"
@@ -187,6 +209,17 @@ const Contact = () => {
                   Book a Discovery Call
                 </a>
               </div>
+
+              {submitState ? (
+                <p
+                  className={`text-sm ${
+                    submitState.type === "success" ? "text-emerald-600" : "text-rose-600"
+                  }`}
+                  role="status"
+                >
+                  {submitState.message}
+                </p>
+              ) : null}
 
               <p className="text-sm text-slate-500">
                 Prefer email? Contact us at{" "}
